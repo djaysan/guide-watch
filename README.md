@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/images/banner.png" alt="Guide Watch: in-game walkthroughs for OnionOS">
+  <img src="docs/images/banner.png" alt="Guide Watch: in-game walkthroughs on the handheld itself">
 </p>
 
 <p align="center">
@@ -12,13 +12,28 @@
 
 ---
 
-Stuck on a puzzle, a boss, a missable item. You put the handheld down and reach for your phone. **Guide Watch** keeps the walkthrough on the device instead: play a game and a short rumble tells you a guide is there, hold **L2 + R2** and press **Down** to read it, press **MENU** to drop straight back into the game where you paused.
+Stuck on a puzzle, a boss, a missable item. You put the handheld down and reach for your phone. **Guide Watch** keeps the walkthrough on the device instead: press a combo while you play and the guide opens over the game, press again and you are back exactly where you paused.
 
-It is the "in-game guide" experience from the Anbernic StockOS mod, rebuilt for OnionOS, plus something that mod never had: an app that downloads the guides for your games on the device itself, over wifi.
+It started as a rebuild of the "in-game guide" feature from cbepx-me's Anbernic StockOS mod and now exists for several consoles. Each one is a separate build with its own install steps, linked below.
 
-## Download
+## Supported consoles
 
-> On a **Nintendo Switch**? Skip to [Nintendo Switch](#nintendo-switch) below, it is a different package.
+| Console | What you get | Status | Read more |
+|---|---|---|---|
+| **Miyoo Mini / Mini Plus** on OnionOS | Rumble cue when a guide exists, L2 + R2 then Down opens it, MENU drops you back in. Plus an on-device downloader that fetches guides over wifi. | Released, [download](https://github.com/djaysan/guide-watch/releases/latest/download/GuideWatch-OnionOS.zip) | [Install and details](#miyoo-mini-plus-onionos), [onion/README.md](onion/README.md) |
+| **Nintendo Switch** with Atmosphère + Ultrahand | A wide overlay over any game: detects the running title, opens its guide, remembers your place, text size on the right stick, maps and tables kept on a grid. | Released, [download](https://github.com/djaysan/guide-watch/releases/latest/download/GuideWatch.ovl) | [Install and details](#nintendo-switch), [switch/README.md](switch/README.md) |
+| **Nintendo 3DS / 2DS** with Luma3DS | A plugin that opens the walkthrough over any 3DS game with L + R + Select, page remembered per game. | Released, separate repo | [djaysan/3ds-ingame-guides](https://github.com/djaysan/3ds-ingame-guides) |
+| **Nintendo DS** with a DSpico flashcart | An in-game guide reader built into the DSpico loader. | Released, separate repo | [djaysan/pico-loader, release v1.0.0-guides](https://github.com/djaysan/pico-loader/releases/tag/v1.0.0-guides) |
+| **Anbernic H700** on stock firmware | The original Real Time Game Guide feature, by cbepx-me, not by this project. | Third party | cbepx-me's StockOS modification |
+| **TrimUI Brick / Smart Pro, spruceOS, Allium** | Planned ports, each as its own folder here. | Not started | [Other handhelds](#other-handhelds) |
+
+The guides themselves are plain text FAQs from the GameFAQs archive on archive.org, see [Where the guides come from](#where-the-guides-come-from). The browser tool at [guides.retromodlab.com](https://guides.retromodlab.com) fills a card for any of these consoles from a computer.
+
+## Miyoo Mini Plus, OnionOS
+
+It is the Anbernic mod's idea rebuilt for OnionOS, plus something that mod never had: an app that downloads the guides for your games on the device itself, over wifi.
+
+### Download
 
 Grab **`GuideWatch-OnionOS.zip`** from the [latest release](https://github.com/djaysan/guide-watch/releases/latest/download/GuideWatch-OnionOS.zip), unzip it, and copy the two folders onto your SD card, merging them with what is already there:
 
@@ -36,7 +51,7 @@ Reboot. That is the whole install: no patching, nothing overwritten, delete the 
   <img src="docs/images/how-it-works.png" alt="How it works: launch a game, press L2+R2 then Down, read the guide, press MENU to return">
 </p>
 
-## Two apps, one package
+### Two apps, one package
 
 **Guide Watch** is the daemon. It starts with the console, notices when a game you have a guide for is running, and handles the rumble cue, the button combo and the return trip.
 
@@ -44,7 +59,7 @@ Reboot. That is the whole install: no patching, nothing overwritten, delete the 
 
 The two ship together because they are two halves of the same thing, and because keeping one download link means one thing to update.
 
-## What you need
+### What you need
 
 - A **Miyoo Mini Plus** running **OnionOS** (any version with the `.tmp_update/startup` folder, which is Onion 4.2 and later).
 - The **Ebook Reader** app, installed from Onion's own Package Manager. Guide Watch shows guides through it, and it is what remembers your reading position per guide.
@@ -53,13 +68,7 @@ The two ship together because they are two halves of the same thing, and because
 
 RetroArch games are supported. Standalone emulators like DraStic are not.
 
-## Where the guides come from
-
-Walkthroughs are plain text FAQs from the GameFAQs archive hosted on [archive.org](https://archive.org/details/Gamespot_Gamefaqs_TXTs). The downloader matches your ROM names against an index and pulls each guide directly from archive.org to your card.
-
-**This repository contains no guide files, and neither does the index.** Nothing is rehosted. If you would rather do this from a computer, the browser version is at [guides.retromodlab.com](https://guides.retromodlab.com) and writes the same `Game Name.txt` files to the same places.
-
-## Notes from the device
+### Notes from the device
 
 Three things the Miyoo taught me, written down for anyone porting this to another handheld:
 
@@ -67,7 +76,7 @@ Three things the Miyoo taught me, written down for anyone porting this to anothe
 2. **Onion deletes `cmd_to_run.sh` after every program exits** unless `/tmp/quick_switch` exists. Without that flag, a handoff lands on the main menu instead of your guide.
 3. **The busybox `awk` on this device fails on bracket-expression regexes**, silently returning an empty string. String work here is done with shell built-ins for that reason.
 
-## Build from source
+### Build from source
 
 The daemon is a single C file, cross compiled in the same Docker toolchain image OnionOS itself uses:
 
@@ -81,6 +90,13 @@ It runs the host self-test first, then produces a static ARM binary at `sd-packa
 
 More detail, including the on-device test checklist, is in [onion/README.md](onion/README.md).
 
+## Where the guides come from
+
+Walkthroughs are plain text FAQs from the GameFAQs archive hosted on [archive.org](https://archive.org/details/Gamespot_Gamefaqs_TXTs). On OnionOS the downloader matches your ROM names against an index and pulls each guide directly from archive.org to your card.
+
+**This repository contains no guide files, and neither does the index.** Nothing is rehosted. If you would rather do this from a computer, the browser version is at [guides.retromodlab.com](https://guides.retromodlab.com) and writes the same `Game Name.txt` files to the same places.
+
+
 ## Nintendo Switch
 
 The Switch version is an **Ultrahand overlay**: open Ultrahand during any game and the walkthrough slides in over the left 70 % of the screen, wider than a normal overlay strip, at the text size you pick with the right stick. It reads which title is running, opens the matching guide on its own, remembers your pick per game and reopens at the line where you stopped. Hand-drawn maps and tables are laid out on a fixed grid so they keep their shape.
@@ -93,7 +109,7 @@ Needs Atmosphère with Ultrahand. Details, controls, how matching works and the 
 
 ## Other handhelds
 
-OnionOS came first. The same idea should port to spruceOS (A30, Flip, TrimUI Brick), stock TrimUI Brick, and Allium on the Miyoo Flip, each as its own folder in this repo. If you want one of those next, open an issue and say which device you have.
+OnionOS and the Switch are done here, the 3DS and DS versions live in their own repos (table above). Next in line are the TrimUI Brick and Smart Pro on stock firmware, spruceOS (A30, Flip, Brick) and Allium on the Miyoo Flip, each as its own folder in this repo. If you want one of those next, open an issue and say which device you have, or cast a vote on [guides.retromodlab.com](https://guides.retromodlab.com).
 
 ## Credits
 
