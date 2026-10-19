@@ -5,6 +5,7 @@
 <p align="center">
   <a href="https://github.com/djaysan/guide-watch/releases/latest"><img src="https://img.shields.io/github/v/release/djaysan/guide-watch?style=flat-square&color=58c274&labelColor=17130e" alt="Latest release"></a>
   <img src="https://img.shields.io/badge/device-Miyoo%20Mini%20Plus-57a4ff?style=flat-square&labelColor=17130e" alt="Miyoo Mini Plus">
+  <img src="https://img.shields.io/badge/device-Nintendo%20Switch-e4000f?style=flat-square&labelColor=17130e" alt="Nintendo Switch">
   <img src="https://img.shields.io/badge/firmware-OnionOS-a06bf5?style=flat-square&labelColor=17130e" alt="OnionOS">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-ffc93c?style=flat-square&labelColor=17130e" alt="MIT license"></a>
 </p>
@@ -16,6 +17,8 @@ Stuck on a puzzle, a boss, a missable item. You put the handheld down and reach 
 It is the "in-game guide" experience from the Anbernic StockOS mod, rebuilt for OnionOS, plus something that mod never had: an app that downloads the guides for your games on the device itself, over wifi.
 
 ## Download
+
+> On a **Nintendo Switch**? Skip to [Nintendo Switch](#nintendo-switch) below, it is a different package.
 
 Grab **`GuideWatch-OnionOS.zip`** from the [latest release](https://github.com/djaysan/guide-watch/releases/latest/download/GuideWatch-OnionOS.zip), unzip it, and copy the two folders onto your SD card, merging them with what is already there:
 
@@ -77,6 +80,16 @@ cd guide-watch/onion
 It runs the host self-test first, then produces a static ARM binary at `sd-package/App/GuideWatch/guidewatch`, leaving `sd-package/` ready to copy onto a card. The downloader is plain shell and needs no build step.
 
 More detail, including the on-device test checklist, is in [onion/README.md](onion/README.md).
+
+## Nintendo Switch
+
+The Switch version is an **Ultrahand overlay**: open Ultrahand during any game and the walkthrough slides in over the left 70 % of the screen, wider than a normal overlay strip, at the text size you pick with the right stick. It reads which title is running, opens the matching guide on its own, remembers your pick per game and reopens at the line where you stopped. Hand-drawn maps and tables are laid out on a fixed grid so they keep their shape.
+
+1. Download **`GuideWatch.ovl`** from the [latest release](https://github.com/djaysan/guide-watch/releases/latest/download/GuideWatch.ovl) and copy it to `/switch/.overlays/` on the SD card.
+2. Put your guides as `.txt` files anywhere under `/Guides/`, subfolders welcome.
+3. In a game, open Ultrahand and pick **Guide Watch**.
+
+Needs Atmosphère with Ultrahand. Details, controls, how matching works and the build steps are in [`switch/README.md`](switch/README.md).
 
 ## Other handhelds
 

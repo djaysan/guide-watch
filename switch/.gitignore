@@ -1,0 +1,14 @@
+# Build intermediates and host test binaries (build/host/); GuideWatch.ovl itself is kept
+build/
+*.elf
+*.nacp
+*.nro
+*.map
+# Fetched by build.sh at a pinned commit
+libultrahand/
+
+# guide .txt files are copyrighted GameFAQs content, never commit them
+guides/
+
+# staged device installs (contain the FTP password)
+deploy/
