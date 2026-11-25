@@ -2,7 +2,7 @@
 
 Guide Watch is an Ultrahand overlay that shows a plain-text game walkthrough (GameFAQs-style `.txt`) over the game you are playing. It works out which game is running, opens the matching guide, and remembers where you stopped reading.
 
-- File: `GuideWatch.ovl`, version 0.4.0, by Ludovic Verbeeck
+- File: `GuideWatch.ovl`, version 0.4.0, by djaysan
 - Needs: Atmosphère with Ultrahand (libultrahand overlay loader)
 - Draws a 896x720 panel on the left 70 % of the screen, at the same sharpness as normal 448 px overlays. If the overlay heap is too small for that, it falls back to the standard 448 px width.
 

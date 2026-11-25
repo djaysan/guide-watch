@@ -37,7 +37,7 @@ include $(DEVKITPRO)/libnx/switch_rules
 # App metadata (APP_TITLE / APP_VERSION end up in the .nacp that Ultrahand lists)
 #---------------------------------------------------------------------------------
 APP_TITLE   := Guide Watch
-APP_AUTHOR  := Ludovic Verbeeck
+APP_AUTHOR  := djaysan
 APP_VERSION := 0.4.0
 TARGET      := GuideWatch
 BUILD       := build

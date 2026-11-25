@@ -8,7 +8,7 @@
 
 using match::Tokens;
 
-// The guide library from Ludovic's SD card, as the picker would list it (path stems)
+// The guide library from the owner's SD card, as the picker would list it (path stems)
 static const char* kGuides[] = {
   "The Legend of Zelda Links Awakening",
   "Final Fantasy XII The Zodiac Age",

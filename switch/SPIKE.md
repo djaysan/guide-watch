@@ -5,11 +5,11 @@
 1. Which framebuffer widths actually come up on screen with each nx-ovlloader heap size (4 / 6 / 8 MB)?
 2. Does a wider framebuffer cover more of the screen at the same sharpness, or does it just get stretched or clipped?
 
-Nothing here has run on hardware yet. Everything under "Findings" comes from reading the source and checking it on the host. The test matrix is for Ludovic to fill in.
+Nothing here has run on hardware yet. Everything under "Findings" comes from reading the source and checking it on the host. The test matrix is for the owner to fill in.
 
 ---
 
-## 1. Install and test (Ludovic)
+## 1. Install and test (owner)
 
 ### Files
 
